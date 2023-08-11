@@ -1,0 +1,5 @@
+{"prompt": "What is the syntax for adding a new file in p4? ->", "completion": " p4 add <path of file>\n"}
+{"prompt": "What is the purpose of the \"lastgood\" command? ->", "completion": " To print out the latest passing CL\n"}
+{"prompt": "What is the syntax for removing a workspace in p4? ->", "completion": " p4w remove <workspace directory>\n"}
+{"prompt": "What does the parameter \"-branch\" do in the \"p4_mkwa\" command? ->", "completion": " It specifies the branch for the workspace\n"}
+{"prompt": "What is the purpose of p4 change? ->", "completion": " To setup a changelist number for your current edited files in workspace\n"}

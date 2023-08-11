@@ -1,0 +1,17 @@
+{
+  "p4 command": {
+    "p4w remove <workspace directory>" : "to remove a workspace, and do not use rm -rf",
+    "p4w sync_all @<CL> " : "syncs all files and components; add -bsc flag to bypass sanity check and skips verification of files",
+    "p4 describe <CL>" : "show changelist description",
+    "p4 edit <path of file>" : "edit file",
+    "p4 add <path of file>" : "add new file",
+    "p4 change" : "setup a changelist number for your current edited files in workspace",
+    "p4 submit -c <CL>" : "submit the changelist you currently have"
+  },
+  "general command": {
+    "lastgood": "prints out the latest passing CL; should sync to this CL before kicking off dv_check_submit",
+    "dv_check_submit -c <CL>": "runs sanity test on CL that is to be submitted",
+    "p4_mkwa -codeline mi300_aid -branch mi300_aid_main -changelist": "sync a new MI300 aid workspace"
+  }
+
+}

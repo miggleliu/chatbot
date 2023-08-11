@@ -1,0 +1,20 @@
+{"prompt": "What does the \"p4 add\" command do? ->", "completion": " It adds a new file to the p4 repository\n"}
+{"prompt": "How can you use p4 change? ->", "completion": " You can use it to organize your changes and track your progress while working on multiple files\n"}
+{"prompt": "Why should we use \"p4w remove\" instead of \"rm -rf\" to remove a workspace? ->", "completion": " p4w remove is the proper command for removing workspaces in p4, while \"rm -rf\" is a Unix/Linux command to forcefully remove directories and files.\n"}
+{"prompt": "What is the use of the parameter \"-codeline\" in the \"p4_mkwa\" command? ->", "completion": " To specify the codeline for the workspace\n"}
+{"prompt": "What is the purpose of p4 describe? ->", "completion": " to show the description of a changelist\n"}
+{"prompt": "What is the purpose of p4w sync_all command? ->", "completion": " To sync all files and components\n"}
+{"prompt": "What does the p4 change command do? ->", "completion": " It creates a new changelist or activates an existing changelist for the current workspace\n"}
+{"prompt": "What does the p4 submit command do? ->", "completion": " It submits the changelist you currently have\n"}
+{"prompt": "What flag can be added to bypass sanity check and skips verification of files? ->", "completion": " -bsc\n"}
+{"prompt": "What is the command to show the description of a changelist? ->", "completion": " p4 describe <CL>\n"}
+{"prompt": "What is the purpose of the command \"p4_mkwa\"? ->", "completion": " To create a new workspace\n"}
+{"prompt": "What should you do before kicking off dv_check_submit? ->", "completion": " Sync to the CL printed by \"lastgood\"\n"}
+{"prompt": "What are the required parameters for the command \"p4_mkwa\"? ->", "completion": " -codeline, -branch, -changelist\n"}
+{"prompt": "What is the purpose of dv_check_submit command? ->", "completion": " runs sanity test on CL that is to be submitted\n"}
+{"prompt": "What is the purpose of the parameter \"-changelist\" in the \"p4_mkwa\" command? ->", "completion": " To sync the workspace to a specific changelist\n"}
+{"prompt": "What is the purpose of the p4 edit command? ->", "completion": " to edit a file\n"}
+{"prompt": "What argument does the \"p4 add\" command require? ->", "completion": " The path of the file that needs to be added\n"}
+{"prompt": "What is the command to submit a changelist? ->", "completion": " p4 submit -c <CL>\n"}
+{"prompt": "What parameter is used with dv_check_submit command to specify the changelist? ->", "completion": " -c <CL>\n"}
+{"prompt": "What is the command to edit a file? ->", "completion": " p4 edit <path of file>\n"}
