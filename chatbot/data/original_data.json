@@ -1,17 +1,84 @@
 {
+  "basic information": {
+    "elkrange" : "project name for MI300 AID",
+    "banff" :    "project name for MI300 XCD",
+    "sawatchrange" : "project name for MI400 AID",
+    "kimberley" : "project name for MI400 XCD",
+    "cumberland" : "project name for MI400 MID"
+  },
   "p4 command": {
     "p4w remove <workspace directory>" : "to remove a workspace, and do not use rm -rf",
-    "p4w sync_all @<CL> " : "syncs all files and components; add -bsc flag to bypass sanity check and skips verification of files",
+    "p4w sync_all @<CL> " : "sync all files and components; add -bsc flag to bypass sanity check and skips verification of files",
+    "p4w sync_local" : "sync all files under import directory",
     "p4 describe <CL>" : "show changelist description",
     "p4 edit <path of file>" : "edit file",
     "p4 add <path of file>" : "add new file",
     "p4 change" : "setup a changelist number for your current edited files in workspace",
-    "p4 submit -c <CL>" : "submit the changelist you currently have"
+    "p4 submit -c <CL>" : "submit the changelist you currently have",
+    "p4 login -a" : "if you're running into a p4pswrd error on a new WS, run this command with the -a flag, as it tells your terminal to validly login to the lsf machine",
+    "p4 changes -u <user> -s submitted -m 10" : "list submission history of a user for the last 10 submissions",
+    "p4 diff ..." : "diff all opened files in workspace",
+    "p4 diff <filename> #have" : "diff current unsubmitted changes to current changelist number",
+    "p4 diff <file>" : "diff a single file",
+    "p4 revert -w" : "revert all changes, and -w flag is used to delete all the added files",
+    "p4 sync -n <file>" : "to see whether a file needs to be synced",
+    "p4 resolve -n <file>" : "to see whether a file needs to be resolved",
+    "p4 resolve ..." : "to resolve all the files with the current CL",
+    "p4w resolve ..." : "to resolve all the files with the current CL",
+    "p4 opened ..." : "to see all the opened files",
+    "p4 opened <file>" : "to see if a file is opened",
+    "p4 filelog <file>" : "to see all the revisions of a file",
+    "p4 changes -u <user> -s shelved" : "show shelved changes",
+    "p4 reopen -c <CL> ..." : "reopen all the files to annother CL",
+    "p4 shelve -c <CL>" : "shelve the change of a CL",
+    "p4 unshelve -s <CL>" : "unshelve the change of a CL",
+    "p4 shelve -c <CL> -d" : "to delete a shelve of changelist CL",
+    "go to your initial workspace [client1], then 'p4 reopen -c default ...', then 'p4 change' to get a CL number, then p4 'shelve -c <CL>' to shelve the change" : "detailed instruction to shelve a change",
+    "go to your second workspace [client2], then 'p4 unshelve -s <CL>' to unshelve the changes, then 'p4 sync ... @<latest passing CL>', then 'p4w resolve ...' to resolve the files, and finally do 'p4w sync_local' to sync the import" : "detailed instruction to unshelve a change",
+    "p4 -p atlvp4p01.amd.com:1677 -u <USERNAME> changes -u <USERNAME> -s pending" : "to list all the pending changelists",
+    "p4 -p atlvp4p01.amd.com:1677 -u <USERNAME> -c <workspace name from list> -H ltipc1119 shelve -d -c <CL>" : "to delete a Changelist CL"
   },
   "general command": {
     "lastgood": "prints out the latest passing CL; should sync to this CL before kicking off dv_check_submit",
     "dv_check_submit -c <CL>": "runs sanity test on CL that is to be submitted",
-    "p4_mkwa -codeline mi300_aid -branch mi300_aid_main -changelist": "sync a new MI300 aid workspace"
+    "cat $STEM/configuration_id" : "to see the current synced changelist",
+    "load_verdi <config_name>" : "load verdi window for a config",
+    "go" : "to go to $STEM, equivalent to 'cd $STEM'",
+    "code ." : "turn your branch directory into Microsoft Viual Studio"
+  },
+  "p4_mkwa command": {
+    "p4_mkwa -print" : "list all the codelines",
+    "p4_mkwa -codeline <codeline> -show_branches" : "list all the branches",
+    "p4_mkwa -codeline mi300_aid -branch mi300_aid_main -changelist <CL>" : "sync a new MI300 aid workspace (elkrange)",
+    "p4_mkwa -codeline mi300_xcd -branch mi300_xcd_main -changelist <CL>" : "sync a new MI300 xcd workspace (banff)",
+    "p4_mkwa -codeline mi300_aid -branch mi300_aid_main -changelist <cl#> -wacfg er" : "sync a new MI300 aid ER workspace (elkrange ER)",
+    "p4_mkwa -codeline sawatchrange -branch sawatchrange_v2 -changelist <CL>" : "sync a new MI400 aid workspace (sawatchrange)",
+    "p4_mkwa -codeline kimberley -branch kimberley_main -changelist <CL>" : "sync a new MI400 xcd workspace (kimberley)"
+  },
+  "command to run tests":{
+    "dj -m 8 -v -e 'connectivity::bia_ifrit_tile_view_flow.build' -l tilebuild.log" : "to run tile build, if on ATL, simply replace 'dj' with 'bdji -Jlsf'",
+    "/tool/pandora/bin/lsf_bsub -q fstsim -P mi300-ver -G mi300-ver.sanity -R 'select[type==RHEL7_64] rusage[mem=30000]' -I <followed by test>" : "to run a test or ewe on LSF",
+    "hbo" : "run here build only on local",
+    "/tool/pandora/bin/lsf_bsub -q fstsim -P mi300-ver -G mi300-ver.sanity -R 'select[type==RHEL7_64] rusage[mem=30000]' -I dj -v -e 'here_only.build(\"\")'" : "run here build only on LSF",
+    "echo $DJ_GCF_OPTS" : "echo your memory and queue used for running test",
+    "setenv DJ_GCF_OPTS \"<the echo output but with higher mem (for example 64000) and different queue (for example fstsim) >\"": "change the memory and queue used for running test",
+    "setenv DJ_GCF_OPTS \"name:'dbashman_atl_mkwa_proj_rtg_de_vol1_user_dbashman_dv_check_tests_DCELAB2_MI400', select:'type==RHEL7_64&&(csbatch||tmpshortrr)', queue:'regr_high', mem:4500, lsf_native:'-P mi300-ver -G mi300-ver'\"" : "Manually change usergroup by adding -G at the end"
+  },
+  "DJ commands":{
+    "bdji -resume ..." : "Details on this new feature described here DJ-Resume. This is useful if you are fixing the specific build action that failed. If a fail is tied to a correction in preceding passing build action, you need to manually hbo that step before restarting the with -resume. Only relevant if previous tree build run actually failed.",
+    "bdji -e 'run_test \"component::test_suite/my_test_name\"' -m 10 -Jlsf  -D<all necessary defines>" : "All steps (tree compile, VCS compile and VCS run) for DV test",
+    "bdji -D<all necessary defines> -m 10 -Jlsf rt component::test_suite/my_test_name": "All steps (tree compile, VCS compile and VCS run) for TDL test",
+    "bdji -e 'run_test \"component::test_suite/my_test_name\"' -m 10 -Jlsf -D RUN_DV=OFF -D<all necessary defines>" : "Redo tree + VCS build for DV test",
+    "bdji -D<all necessary defines> -m 10 -Jlsf rt component::test_suite/my_test_name -a build -a build_sim": "Redo tree + VCS build for TDL test",
+    "bdji -e 'run_test \"component::test_suite/my_test_name\"' -m 10 -Jlsf -j sim_build -D<all necessary defines>" : "VCS build + RUN test for DV test, note that in elkrange use -j tool_sim_assemble",
+    "bdji -D<all necessary defines> -m 10 -Jlsf -e 'jsb \"component::test_suite/my_test_name\"' -DRUN": "VCS build + RUN test for TDL test",
+    "bdji -e 'run_test \"component::test_suite/my_test_name\"' -m 10 -Jlsf -j sim_build -D RUN_DV=OFF -D<all necessary defines>" : "VCS build for DV test, note that in elkrange use -j tool_sim_assemble",
+    "bdji -D<all necessary defines> -m 10 -Jlsf -e 'jsb \"component::test_suite/my_test_name\"'": "VCS build for TDL test",
+    "bdji -e 'run_test \"component::test_suite/my_test_name\"' -m 10 -Jlsf -D RUN_DV=ONLY -D<all necessary defines>" : "Run test for DV test",
+    "bdji -D<all necessary defines> -m 10 -Jlsf rt component::test_suite/my_test_name -a execute -a check -a report -a cleanup": "Run test for TDL test",
+    "bdji -c -v -e 'run_test \"<suite>/all --where self.when=~/soc_hv_test_direct/ -v -endp\"' -m 10 -J lsf -l <LOG_LOCATION>" : "An example of regression for DV test",
+    "bdji -e 'run_test \"component::test_suite/my_test_name\"' -m 10 -Jlsf -D BUILD_SIM=OFF -D RUN_SIM=OFF -D RUN_DV=OFF -D<all necessary defines>": "Build tree only for TDL test",
+    "bdji -D<all necessary defines> -m 10 -Jlsf rt component::test_suite/my_test_name -a build" : "Build tree only for DV test",
+    "bdji ...  rt component1::test_suite1/my_test_name1 component2::test_suite2/my_test_name2 ...": "Run multiple testcases"
   }
-
 }
