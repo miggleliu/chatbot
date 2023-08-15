@@ -33,8 +33,8 @@
     "p4 shelve -c <CL>" : "shelve the change of a CL",
     "p4 unshelve -s <CL>" : "unshelve the change of a CL",
     "p4 shelve -c <CL> -d" : "to delete a shelve of changelist CL",
-    "go to your initial workspace [client1], then 'p4 reopen -c default ...', then 'p4 change' to get a CL number, then p4 'shelve -c <CL>' to shelve the change" : "detailed instruction to shelve a change",
-    "go to your second workspace [client2], then 'p4 unshelve -s <CL>' to unshelve the changes, then 'p4 sync ... @<latest passing CL>', then 'p4w resolve ...' to resolve the files, and finally do 'p4w sync_local' to sync the import" : "detailed instruction to unshelve a change",
+    "go to your initial workspace, then 'p4 reopen -c default ...', then 'p4 change' to get a CL number, then p4 'shelve -c <CL>' to shelve the change" : "detailed instruction to shelve a change",
+    "go to your second workspace, then 'p4 unshelve -s <CL>' to unshelve the changes, then 'p4 sync ... @<latest passing CL>', then 'p4w resolve ...' to resolve the files, and finally do 'p4w sync_local' to sync the import" : "detailed instruction to unshelve a change",
     "p4 -p atlvp4p01.amd.com:1677 -u <USERNAME> changes -u <USERNAME> -s pending" : "to list all the pending changelists",
     "p4 -p atlvp4p01.amd.com:1677 -u <USERNAME> -c <workspace name from list> -H ltipc1119 shelve -d -c <CL>" : "to delete a Changelist CL"
   },
@@ -57,12 +57,9 @@
   },
   "command to run tests":{
     "dj -m 8 -v -e 'connectivity::bia_ifrit_tile_view_flow.build' -l tilebuild.log" : "to run tile build, if on ATL, simply replace 'dj' with 'bdji -Jlsf'",
-    "/tool/pandora/bin/lsf_bsub -q fstsim -P mi300-ver -G mi300-ver.sanity -R 'select[type==RHEL7_64] rusage[mem=30000]' -I <followed by test>" : "to run a test or ewe on LSF",
     "hbo" : "run here build only on local",
-    "/tool/pandora/bin/lsf_bsub -q fstsim -P mi300-ver -G mi300-ver.sanity -R 'select[type==RHEL7_64] rusage[mem=30000]' -I dj -v -e 'here_only.build(\"\")'" : "run here build only on LSF",
     "echo $DJ_GCF_OPTS" : "echo your memory and queue used for running test",
-    "setenv DJ_GCF_OPTS \"<the echo output but with higher mem (for example 64000) and different queue (for example fstsim) >\"": "change the memory and queue used for running test",
-    "setenv DJ_GCF_OPTS \"name:'dbashman_atl_mkwa_proj_rtg_de_vol1_user_dbashman_dv_check_tests_DCELAB2_MI400', select:'type==RHEL7_64&&(csbatch||tmpshortrr)', queue:'regr_high', mem:4500, lsf_native:'-P mi300-ver -G mi300-ver'\"" : "Manually change usergroup by adding -G at the end"
+    "setenv DJ_GCF_OPTS \"<the echo output but with higher mem and different queue>\"": "change the memory and queue used for running test"
   },
   "DJ commands":{
     "bdji -resume ..." : "Details on this new feature described here DJ-Resume. This is useful if you are fixing the specific build action that failed. If a fail is tied to a correction in preceding passing build action, you need to manually hbo that step before restarting the with -resume. Only relevant if previous tree build run actually failed.",

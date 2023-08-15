@@ -1,5 +1,60 @@
-{"prompt": "What is the syntax for adding a new file in p4? ->", "completion": " p4 add <path of file>\n"}
-{"prompt": "What is the purpose of the \"lastgood\" command? ->", "completion": " To print out the latest passing CL\n"}
-{"prompt": "What is the syntax for removing a workspace in p4? ->", "completion": " p4w remove <workspace directory>\n"}
-{"prompt": "What does the parameter \"-branch\" do in the \"p4_mkwa\" command? ->", "completion": " It specifies the branch for the workspace\n"}
-{"prompt": "What is the purpose of p4 change? ->", "completion": " To setup a changelist number for your current edited files in workspace\n"}
+{"prompt": "What does elkrange refer to? ->", "completion": " project name for MI300 AID\n"}
+{"prompt": "What is the basic information about sawatchrange? ->", "completion": " It is the project name for MI400 AID\n"}
+{"prompt": "What does Kimberley refer to? ->", "completion": " the project name for MI400 XCD\n"}
+{"prompt": "What is the alternative to using \"rm -rf\" when removing a workspace in p4? ->", "completion": " p4w remove <workspace directory>\n"}
+{"prompt": "What does the -bsc flag do during the synchronization process? ->", "completion": " It skips the verification of files\n"}
+{"prompt": "What does the p4w sync_local command do? ->", "completion": " It synchronizes all files under the import directory\n"}
+{"prompt": "What does the <CL> in the \"p4 describe\" command represent? ->", "completion": " the changelist number\n"}
+{"prompt": "What is the purpose of p4 edit command? ->", "completion": " to edit a file in Perforce\n"}
+{"prompt": "What parameter does the \"p4 add\" command require? ->", "completion": " The path of the file to be added\n"}
+{"prompt": "What is the purpose of the \"p4 change\" command? ->", "completion": " To set up a changelist number for edited files in the workspace.\n"}
+{"prompt": "What does the p4 submit -c <CL> command do? ->", "completion": " It submits the changelist you currently have\n"}
+{"prompt": "What does the -a flag do for the p4 login command? ->", "completion": " It tells your terminal to validly login to the lsf machine\n"}
+{"prompt": "What does the -m flag in p4 changes command represent? ->", "completion": " To specify the maximum number of changes to display\n"}
+{"prompt": "What does the command \"p4 diff ...\" do? ->", "completion": " It diffs all opened files in the workspace\n"}
+{"prompt": "What does the \"p4 diff\" command do? ->", "completion": " It compares the current unsubmitted changes to the current changelist number\n"}
+{"prompt": "What is the purpose of p4 diff? ->", "completion": " to perform a diff on a single file\n"}
+{"prompt": "What does the -w flag do in the \"p4 revert -w\" command? ->", "completion": " it is used to delete all the added files\n"}
+{"prompt": "What does the -n flag do in the p4 sync -n <file> command? ->", "completion": " It means \"no sync\", indicating that the file should not actually be synced\n"}
+{"prompt": "How can I resolve all files with the current CL using \"p4\"? ->", "completion": " You can use the \"p4 resolve ...\" command.\n"}
+{"prompt": "What does \"p4w resolve ...\" do? ->", "completion": " It resolves all the files with the current CL\n"}
+{"prompt": "What is the purpose of \"p4 opened ...\" command? ->", "completion": " to see all the opened files\n"}
+{"prompt": "What does the p4 opened command do? ->", "completion": " It checks if a file is opened\n"}
+{"prompt": "How can I view the revisions of a specific file using Perforce? ->", "completion": " You can use the p4 filelog <file> command\n"}
+{"prompt": "What does the \"p4 changes -u <user> -s shelved\" command do? ->", "completion": " It shows shelved changes by a specific user.\n"}
+{"prompt": "What is the purpose of the p4 reopen command? ->", "completion": " To reopen all the files to another changelist\n"}
+{"prompt": "What is the purpose of p4 shelve -c <CL> command? ->", "completion": " to shelve the change of a CL\n"}
+{"prompt": "What is the syntax of the p4 unshelve command? ->", "completion": " p4 unshelve -s <CL>\n"}
+{"prompt": "What is the syntax for deleting a shelved changelist? ->", "completion": " p4 shelve -c <CL> -d\n"}
+{"prompt": "What is the command to shelve a change? ->", "completion": " p4 shelve -c <CL>\n"}
+{"prompt": "What is the purpose of the given detailed instructions? ->", "completion": " To unshelve a change\n"}
+{"prompt": "What is the value used to filter the changelists by the user? ->", "completion": " -u <USERNAME>\n"}
+{"prompt": "What is the changelist used in the p4 command? ->", "completion": " <CL>\n"}
+{"prompt": "What should be done after using the \"lastgood\" command? ->", "completion": " Sync to this CL before kicking off dv_check_submit\n"}
+{"prompt": "What is the option to specify the change list for the dv_check_submit command? ->", "completion": " -c <CL>\n"}
+{"prompt": "How can I view the current synced changelist? ->", "completion": " By using the \"cat $STEM/configuration_id\" command.\n"}
+{"prompt": "What is the purpose of the command load_verdi? ->", "completion": " To load the Verdi window for a specific config\n"}
+{"prompt": "What does the \"go\" command do? ->", "completion": " It goes to the specified directory\n"}
+{"prompt": "What is the purpose of the \"code .\" command? ->", "completion": " to turn your branch directory into Microsoft Visual Studio\n"}
+{"prompt": "What does the p4_mkwa command do? ->", "completion": " list all the codelines\n"}
+{"prompt": "What option do you use with p4_mkwa to display the branches? ->", "completion": " -show_branches\n"}
+{"prompt": "Can you give an example of using the p4_mkwa command? ->", "completion": " p4_mkwa -codeline mi300_aid -branch mi300_aid_main -changelist 12345\n"}
+{"prompt": "What does the -changelist argument in p4_mkwa command do? ->", "completion": " It is used to sync to a specific changelist in the new workspace\n"}
+{"prompt": "What is the purpose of the p4_mkwa command? ->", "completion": " to sync a new MI300 aid ER workspace\n"}
+{"prompt": "What is the branch specified in the command? ->", "completion": " sawatchrange_v2\n"}
+{"prompt": "What is the workspace created using the p4_mkwa command called? ->", "completion": " kimberley\n"}
+{"prompt": "How can you modify the command to run tile build on ATL? ->", "completion": " Replace 'dj' with 'bdji -Jlsf'\n"}
+{"prompt": "What does the \"hbo\" command do? ->", "completion": " It runs the build only on local\n"}
+{"prompt": "What does the command \"echo $DJ_GCF_OPTS\" do? ->", "completion": " It echoes the memory and queue used for running tests.\n"}
+{"prompt": "What does the setenv command do? ->", "completion": " It changes the memory and queue used for running tests\n"}
+{"prompt": "What do you need to do before restarting with -resume? ->", "completion": " Manually hbo the step that was corrected in the preceding passing build action\n"}
+{"prompt": "What is the purpose of the \"-D<all necessary defines>\" argument in the \"bdji\" command? ->", "completion": " To specify any necessary defines for the test\n"}
+{"prompt": "What is the format for specifying the test name with the \"bdji\" command? ->", "completion": " component::test_suite/my_test_name\n"}
+{"prompt": "What does the \"-D\" option do in the \"bdji\" command? ->", "completion": " It allows specifying additional defines for the build/test.\n"}
+{"prompt": "What are the additional actions performed by the \"bdji\" command? ->", "completion": " Building and simulating the Redo tree with VCS for the TDL test\n"}
+{"prompt": "What is the additional note for using \"bdji\" command in elkrange? ->", "completion": " In elkrange, use -j tool_sim_assemble\n"}
+{"prompt": "What does the \"-DRUN\" part of the \"bdji\" command do? ->", "completion": " it sets a flag to indicate that the test should be run\n"}
+{"prompt": "What is the argument for the \"-e\" option in the \"bdji\" command? ->", "completion": " 'jsb \"component::test_suite/my_test_name\"'\n"}
+{"prompt": "What is the purpose of the -a cleanup flag in the command? ->", "completion": " It cleans up after the test\n"}
+{"prompt": "What is the purpose of the \"-a\" option in the \"bdji\" command? ->", "completion": " To specify the action (build)\n"}
+{"prompt": "What is the purpose of the bdji command? ->", "completion": " to run multiple testcases\n"}
