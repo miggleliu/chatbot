@@ -29,7 +29,7 @@ def main():
         except:
             continue
 
-    model_ID = train(training_question_list, testing_question_list)
+    #model_ID = train(training_question_list, testing_question_list)
     '''
 
     model_ID = create_finetune_model(model='curie', batch_size=8, n_epochs=10, training_file="data/training_data.jsonl", validation_file="data/testing_data.jsonl")
@@ -56,10 +56,10 @@ def create_data_list(original_json_file):
 
 def get_questions(data):
     title, command, description = data[0], data[1], data[2]
-    context = f"{title}:\n{command}: {description}"
-    content = f"Please write question-answer pairs based on the text below, in the format of a nested python list. Each inner list should contain one question and one answer.\n\nText:{context}"
-    example_context = "p4 command:\n p4 add: add new file"
-    example_content = f"Please write question-answer pairs based on the text below, in the format of a nested python list. Each inner list should contain one question and one answer.\n\nFor example, Text:{example_context}"
+    context = f"Category: {title}\nUsage/Command: {command}\nFunction/Description: {description}"
+    content = f"Please write at least five question-answer pairs based on the text below, in the format of a nested python list. Each inner list should contain one question and one answer.\n\nText:{context}"
+    example_context = "Category: p4 command:\nUsage/Command: p4 add\nFunction/Description: add new file"
+    example_content = f"Please write at least five question-answer pairs based on the text below, in the format of a nested python list. Each inner list should contain one question and one answer.\n\nFor example, Text:{example_context}"
 
     try:
         response = openai.ChatCompletion.create(
@@ -67,7 +67,7 @@ def get_questions(data):
             messages=[
                 {"role": "system", "content": "You are a helpful assistant who is good at concluding question-answer pairs based on a given text."},
                 {"role": "user", "content": example_content},
-                {"role": "assistant", "content": "qa_list = [\n['What is the command to add a new file?', 'p4 add'],\n['What is the purpose of p4 add?', 'to add a new file']\n]"},
+                {"role": "assistant", "content": "qa_list = [\n['What is the p4 command to add a new file?', 'p4 add'],\n['What is the purpose of p4 add?', 'to add a new file'],\n['When do you use p4 add?', 'when you want to add a new file'],\n['What command should you use when you want to add a new file?', 'p4 add']]"},
                 {"role": "user", "content": content}
             ]
         )
@@ -111,7 +111,7 @@ def train(train_df, test_df):
             f.write("\n")
     f.close()
 
-    fine_tuned_model_id = create_finetune_model(model='currie', batch_size=8, n_epochs=10, training_file="data/training_data.jsonl", validation_file="data/testing_data.jsonl")
+    fine_tuned_model_id = create_finetune_model(model='curie', batch_size=8, n_epochs=10, training_file="data/training_data.jsonl", validation_file="data/testing_data.jsonl")
     return fine_tuned_model_id
 
 
