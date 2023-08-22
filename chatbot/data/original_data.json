@@ -1,21 +1,14 @@
 {
-  "basic information": {
-    "elkrange" : "project name for MI300 AID",
-    "banff" :    "project name for MI300 XCD",
-    "sawatchrange" : "project name for MI400 AID",
-    "kimberley" : "project name for MI400 XCD",
-    "cumberland" : "project name for MI400 MID"
-  },
-  "p4 command": {
+  "command": {
     "p4w remove <workspace directory>" : "to remove a workspace, and do not use rm -rf",
-    "p4w sync_all @<CL> " : "sync all files and components; add -bsc flag to bypass sanity check and skips verification of files",
-    "p4w sync_local" : "sync all files under import directory",
-    "p4 describe <CL>" : "show changelist description",
-    "p4 edit <path of file>" : "edit file",
-    "p4 add <path of file>" : "add new file",
-    "p4 change" : "setup a changelist number for your current edited files in workspace",
-    "p4 submit -c <CL>" : "submit the changelist you currently have",
-    "p4 login -a" : "if you're running into a p4pswrd error on a new WS, run this command with the -a flag, as it tells your terminal to validly login to the lsf machine",
+    "p4w sync_all @<CL> " : "to sync all files and components; add -bsc flag to bypass sanity check and skips verification of files",
+    "p4w sync_local" : "to sync all files under import directory",
+    "p4 describe <CL>" : "to show changelist description",
+    "p4 edit <path of file>" : "to edit files",
+    "p4 add <path of file>" : "to add new files",
+    "p4 change" : "to setup a changelist number for your current edited files in workspace",
+    "p4 submit -c <CL>" : "to submit the changelist you currently have",
+    "p4 login -a" : "if you're running into a p4 password error on a new WS, run this command with the -a flag, as it tells your terminal to validly login to the lsf machine",
     "p4 changes -u <user> -s submitted -m 10" : "list submission history of a user for the last 10 submissions",
     "p4 diff ..." : "diff all opened files in workspace",
     "p4 diff <filename> #have" : "diff current unsubmitted changes to current changelist number",
@@ -36,33 +29,21 @@
     "go to your initial workspace, then 'p4 reopen -c default ...', then 'p4 change' to get a CL number, then p4 'shelve -c <CL>' to shelve the change" : "detailed instruction to shelve a change",
     "go to your second workspace, then 'p4 unshelve -s <CL>' to unshelve the changes, then 'p4 sync ... @<latest passing CL>', then 'p4w resolve ...' to resolve the files, and finally do 'p4w sync_local' to sync the import" : "detailed instruction to unshelve a change",
     "p4 -p atlvp4p01.amd.com:1677 -u <USERNAME> changes -u <USERNAME> -s pending" : "to list all the pending changelists",
-    "p4 -p atlvp4p01.amd.com:1677 -u <USERNAME> -c <workspace name from list> -H ltipc1119 shelve -d -c <CL>" : "to delete a Changelist CL"
-  },
-  "general command": {
+    "p4 -p atlvp4p01.amd.com:1677 -u <USERNAME> -c <workspace name from list> -H ltipc1119 shelve -d -c <CL>" : "to delete a Changelist CL",
     "lastgood": "prints out the latest passing CL; should sync to this CL before kicking off dv_check_submit",
     "dv_check_submit -c <CL>": "runs sanity test on CL that is to be submitted",
     "cat $STEM/configuration_id" : "to see the current synced changelist",
     "load_verdi <config_name>" : "load verdi window for a config",
     "go" : "to go to $STEM, equivalent to 'cd $STEM'",
-    "code ." : "turn your branch directory into Microsoft Viual Studio"
-  },
-  "p4_mkwa command": {
+    "code ." : "turn your branch directory into Microsoft Viual Studio",
     "p4_mkwa -print" : "list all the codelines",
     "p4_mkwa -codeline <codeline> -show_branches" : "list all the branches",
-    "p4_mkwa -codeline mi300_aid -branch mi300_aid_main -changelist <CL>" : "sync a new MI300 aid workspace (elkrange)",
-    "p4_mkwa -codeline mi300_xcd -branch mi300_xcd_main -changelist <CL>" : "sync a new MI300 xcd workspace (banff)",
-    "p4_mkwa -codeline mi300_aid -branch mi300_aid_main -changelist <cl#> -wacfg er" : "sync a new MI300 aid ER workspace (elkrange ER)",
-    "p4_mkwa -codeline sawatchrange -branch sawatchrange_v2 -changelist <CL>" : "sync a new MI400 aid workspace (sawatchrange)",
-    "p4_mkwa -codeline kimberley -branch kimberley_main -changelist <CL>" : "sync a new MI400 xcd workspace (kimberley)"
-  },
-  "command to run tests":{
+    "p4_mkwa -codeline <codeline> -branch <branch> -changelist <CL>" : "sync a new workspace to changelist CL",
     "dj -m 8 -v -e 'connectivity::bia_ifrit_tile_view_flow.build' -l tilebuild.log" : "to run tile build, if on ATL, simply replace 'dj' with 'bdji -Jlsf'",
     "hbo" : "run here build only on local",
     "echo $DJ_GCF_OPTS" : "echo your memory and queue used for running test",
-    "setenv DJ_GCF_OPTS \"<the echo output but with higher mem and different queue>\"": "change the memory and queue used for running test"
-  },
-  "DJ commands":{
-    "bdji -resume ..." : "Details on this new feature described here DJ-Resume. This is useful if you are fixing the specific build action that failed. If a fail is tied to a correction in preceding passing build action, you need to manually hbo that step before restarting the with -resume. Only relevant if previous tree build run actually failed.",
+    "setenv DJ_GCF_OPTS \"<the echo output but with higher mem and different queue>\"": "change the memory and queue used for running test",
+    "bdji -resume ..." : "This is useful if you are fixing the specific build action that failed. If a fail is tied to a correction in preceding passing build action, you need to manually hbo that step before restarting the with -resume. Only relevant if previous tree build run actually failed.",
     "bdji -e 'run_test \"component::test_suite/my_test_name\"' -m 10 -Jlsf  -D<all necessary defines>" : "All steps (tree compile, VCS compile and VCS run) for DV test",
     "bdji -D<all necessary defines> -m 10 -Jlsf rt component::test_suite/my_test_name": "All steps (tree compile, VCS compile and VCS run) for TDL test",
     "bdji -e 'run_test \"component::test_suite/my_test_name\"' -m 10 -Jlsf -D RUN_DV=OFF -D<all necessary defines>" : "Redo tree + VCS build for DV test",

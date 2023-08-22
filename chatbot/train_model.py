@@ -8,7 +8,7 @@ import time
 
 def main():
     openai.api_key = open("ID/my_api_key.txt").read()
-    '''
+
     data_list = create_data_list("data/original_data.json")
     training_question_list = []
     testing_question_list = []
@@ -29,10 +29,8 @@ def main():
         except:
             continue
 
-    #model_ID = train(training_question_list, testing_question_list)
-    '''
-
-    model_ID = create_finetune_model(model='curie', batch_size=8, n_epochs=10, training_file="data/training_data.jsonl", validation_file="data/testing_data.jsonl")
+    model_ID = train(training_question_list, testing_question_list)
+    #model_ID = create_finetune_model(model='curie', batch_size=8, n_epochs=20, training_file="data/training_data.jsonl", validation_file="data/testing_data.jsonl")
     model_ID_file = "ID/my_fine-tuned_model_ID.txt"
     with open(model_ID_file, "w") as f:
         f.write(model_ID)
@@ -55,19 +53,19 @@ def create_data_list(original_json_file):
 
 
 def get_questions(data):
-    title, command, description = data[0], data[1], data[2]
-    context = f"Category: {title}\nUsage/Command: {command}\nFunction/Description: {description}"
-    content = f"Please write at least five question-answer pairs based on the text below, in the format of a nested python list. Each inner list should contain one question and one answer.\n\nText:{context}"
-    example_context = "Category: p4 command:\nUsage/Command: p4 add\nFunction/Description: add new file"
-    example_content = f"Please write at least five question-answer pairs based on the text below, in the format of a nested python list. Each inner list should contain one question and one answer.\n\nFor example, Text:{example_context}"
+    category, command, function = data[0], data[1], data[2]
+    context = f"{category}: {command}\nFunction: {function}"
+    content = f"Please write at least five question-answer pairs based on the text below, in the format of a nested python list. Each inner list should contain one question and one answer.\n\n{context}"
+    example_context = "command: p4 add\nFunction: to add new files"
+    example_content = f"Example:\nPlease write at least five question-answer pairs based on the text below, in the format of a nested python list. Each inner list should contain one question and one answer.\n\n{example_context}"
 
     try:
         response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
             messages=[
-                {"role": "system", "content": "You are a helpful assistant who is good at concluding question-answer pairs based on a given text."},
+                {"role": "system", "content": "You are good at generating question-answer pairs based on a given text."},
                 {"role": "user", "content": example_content},
-                {"role": "assistant", "content": "qa_list = [\n['What is the p4 command to add a new file?', 'p4 add'],\n['What is the purpose of p4 add?', 'to add a new file'],\n['When do you use p4 add?', 'when you want to add a new file'],\n['What command should you use when you want to add a new file?', 'p4 add']]"},
+                {"role": "assistant", "content": "qa_list = [\n['What is the p4 command to add a new file?', 'p4 add'],\n['What is the purpose of p4 add?', 'to add a new file'],\n['When do you use p4 add?', 'when you want to add a new file'],\n['What command should you use when you want to add a new file?', 'p4 add'],\n['What is the function of p4 add?','to add new files']\n]"},
                 {"role": "user", "content": content}
             ]
         )
@@ -111,7 +109,7 @@ def train(train_df, test_df):
             f.write("\n")
     f.close()
 
-    fine_tuned_model_id = create_finetune_model(model='curie', batch_size=8, n_epochs=10, training_file="data/training_data.jsonl", validation_file="data/testing_data.jsonl")
+    fine_tuned_model_id = create_finetune_model(model='curie', batch_size=len(train_df), n_epochs=20, training_file="data/training_data.jsonl", validation_file="data/testing_data.jsonl")
     return fine_tuned_model_id
 
 

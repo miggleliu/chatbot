@@ -4,15 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <title>Chatbot</title>
 </head>
 <body>
     <div class="chat-container">
+        <div class="chat-header">
+            <img src="../static/chatbox_logo.png" alt="ChatBOX Logo" class="logo">
+            <span class="title">ChatBOX</span>
+        </div>
         <div class="chat-log" id="chat-log">
             <div class="message bot">Welcome! How can I assist you?</div>
         </div>
-        <input type="text" id="user-input" placeholder="Type your message...">
-        <button id="send-button">Send</button>
+        <div class="user-input-container">
+            <input type="text" id="user-input" placeholder="Type your message...">
+            <button id="send-button"><i class="fas fa-paper-plane"></i></button>
+        </div>
     </div>
     <script src="../static/script.js"></script>
 </body>
