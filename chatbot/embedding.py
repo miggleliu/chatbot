@@ -35,7 +35,7 @@ def main():
         df = pd.DataFrame(columns=['Context', 'Embedding', 'Similarity'])
         for data in data_list:
             category, command, function = data[0], data[1], data[2]
-            context = "{category}: {command}; Function: {function}".format({"category": category, "command": command, "function": function})
+            context = f"{category}: {command}; Function: {function}"
             embedding = get_embedding(context)
             new_row = [context, embedding, -1]
             df.loc[len(df)] = new_row
