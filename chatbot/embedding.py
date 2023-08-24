@@ -27,7 +27,7 @@ def main():
             warnings.warn("Meaningless Argument! Argument 'update_data' is expected if you need the data to be updated, otherwise by default the data remains the same!", UserWarning)
             update_data = False
 
-    openai.api_key = open("ID/my_api_key.txt").read()
+    openai.api_key = open("ID/my_api_key.txt").read().strip()
 
     # create/read df which stores information of embeddings
     if update_data:
@@ -35,7 +35,7 @@ def main():
         df = pd.DataFrame(columns=['Context', 'Embedding', 'Similarity'])
         for data in data_list:
             category, command, function = data[0], data[1], data[2]
-            context = f"{category}: {command}; Function: {function}"
+            context = "{category}: {command}; Function: {function}".format({"category": category, "command": command, "function": function})
             embedding = get_embedding(context)
             new_row = [context, embedding, -1]
             df.loc[len(df)] = new_row

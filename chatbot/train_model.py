@@ -7,7 +7,7 @@ import time
 
 
 def main():
-    openai.api_key = open("ID/my_api_key.txt").read()
+    openai.api_key = open("ID/my_api_key.txt").read().strip()
 
     data_list = create_data_list("data/original_data.json")
     training_question_list = []
